@@ -1,0 +1,53 @@
+{% extends 'crafty_devil/base.html' %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'crafty_devil/css/about.css' %}"/>
+    <link rel="stylesheet" href="{% static 'crafty_devil/css/http_www.w3schools.com_w3css_4_w3.css' %}">
+
+    <div class="title-box">
+        <hr>
+        <p>Crafty Devil's Story</p>
+        <hr>
+    </div>
+    <div class="blurb">
+        <p>
+            Crafty Devil is an independent crafting materials supplier based in Glasgow. We were founded in 1806, when
+            Harold Wagner von Devil III emmigrated from Transylvania to Glasgow to offer his expertise to the bustling carpentry
+            industry in Scotland at the time. However, Devil was surprised to find that it wasn't only carpenters who
+            were in need of his wares, and so he expanded his business to provide materials for artists, seamstresses,
+            and many more expert crafters throughout the nation.
+        </p>
+        <br>
+        <hr>
+        <div class="pictures">
+            <img src="{% static "crafty_devil/images/page_images/apollo_11.jpg" %}" alt="Apollo 11">
+            <img src="{% static "crafty_devil/images/page_images/harold.jpg" %}" alt="Harold Wagner von Devil III">
+            <img src="{% static "crafty_devil/images/page_images/artist.jpg" %}" alt="A happy customer">
+        </div>
+        <hr>
+        <br>
+        <p>
+            Crafty Devil eventually earned its fame when it was commissioned by NASA to fashion the space-suits worn by
+            astronauts in 1969 on the Apollo 11 mission to visit the moon. The suits were created out of the most pristine
+            materials in the country, and as you well know, worked flawlessly during the historic lunar mission. This
+            earned Crafty Devil and Harold von Devil himself world-recognised accolade, and eventually knighthood in over
+            10 countries across the continent. Harold is still alive to this day, and not only is he still creating brilliant
+            pieces of work, but also supplying you with his best materials.
+        </p>
+        <br>
+        <p>
+            Simply put, we put the materials in the hands of those who can make something of it. Just as a restaurant gives
+            its chefs quality ingredients to make delicious meals with, we provide expert carpenters with quality wood,
+            dedicated artists quality paint, and master sculpters quality clay for them to hammer, stroke and carve into
+            pieces of art. With unbeatable prices, we have our customers at the forefront of our mind at all times, and
+            so we strive to give you the highest level of service possible to get your work looking as amazing as it can.
+        </p>
+        <br>
+        <p>
+            We sell paint, fabrics, wood, adhesives, you name it. If you need it for a crafts project, the chances are we
+            have it in stock. To browse our wares, hit the products button, or why not pop in store?
+        </p>
+    </div>
+    <hr>
+{% endblock %}

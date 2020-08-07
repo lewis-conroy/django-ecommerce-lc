@@ -1,0 +1,29 @@
+{% block content %}
+    <div id="form-area">
+        <h2>Low Stock (< 100 units remaining)</h2>
+        <table>
+            <tr>
+                <th>Product ID</th><th>Product Name</th><th>Supplier Name</th><th>Stock Level</th><th></th>
+            </tr>
+            {% for product in low_stock %}
+                <tr>
+                    <td>
+                        {{ product.id }}
+                    </td>
+                    <td>
+                        {{ product.desc }}
+                    </td>
+                    <td>
+                        {{ product.supplier.name }}
+                    </td>
+                    <td>
+                        {{ product.stock_level }}
+                    </td>
+                    <td>
+                        <a href="{% url 'product' product.id %}">View</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

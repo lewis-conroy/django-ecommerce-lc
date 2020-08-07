@@ -1,0 +1,46 @@
+{% block details_form %}
+    <div id="form-area">
+        <h2>Your Details</h2>
+        <form action="" method="post">
+        {% csrf_token %}
+        {% if label == 'email-used' %}
+                <label id="error-label">This email is already being used.</label>
+            {% elif label == 'name-failed' %}
+                <label id="error-label">Invalid Name</label>
+            {% elif label == 'password-failed' %}
+                <label id="error-label">Password too short</label>
+            {% elif label == 'address-failed' %}
+                <label id="error-label">Invalid Address</label>
+            {% elif label == 'telephone-failed' %}
+                <label id="error-label">Invalid Telephone Number</label>
+            {% elif label == 'postcode-failed' %}
+                <label id="error-label">Invalid Post Code</label>
+            {% elif label == 'city-failed' %}
+                <label id="error-label">Invalid City</label>
+            {% elif label == 'email-failed' %}
+                <label id="error-label">Invalid Email</label>
+            {% elif label == 'email-used' %}
+                <label id="error-label">This email is already being used.</label>
+            {% elif label == 'failed' %}
+                <p id="error-label">
+                    Signup failed.<br>
+                    Ensure that you have entered valid details in all fields.
+                </p>
+            {% endif %}
+            <br>
+            {% for field in form %}
+                {{ field.label }}
+                <br>
+                {{ field }}
+                <br>
+            {% endfor %}
+            <br>
+            <label>Confirm your password</label>
+            <br>
+            <input name="confirm-password" type="password">
+            <br>
+            <br>
+            <button type="submit" class="btn btn-danger btn-lg">Submit Changes</button>
+        </form>
+    </div>
+{% endblock %}

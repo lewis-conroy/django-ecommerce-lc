@@ -1,0 +1,44 @@
+{% block content %}
+    <div id="form-area">
+        <h2>Suppliers</h2>
+        <button type="button" class="btn btn-danger btn-sm" onclick="location.href='{% url 'add supplier' %}';">Add Supplier</button>
+        <table>
+            <tr>
+                <th>Supplier ID</th><th>Supplier Name</th><th>Address</th><th>Post Code</th><th>City</th><th>Telephone</th><th>Website</th>
+                <th></th><th></th>
+            </tr>
+            {% for supplier in suppliers %}
+                <tr>
+                    <td>
+                        {{ supplier.id }}
+                    </td>
+                    <td>
+                        {{ supplier.name }}
+                    </td>
+                    <td>
+                        {{ supplier.address_1 }}
+                        {{ supplier.address_2 }}
+                    </td>
+                    <td>
+                        {{ supplier.post_code }}
+                    </td>
+                    <td>
+                        {{ supplier.city }}
+                    </td>
+                    <td>
+                        {{ supplier.telephone }}
+                    </td>
+                    <td>
+                        {{ supplier.website }}
+                    </td>
+                    <td>
+                        <a href="{% url 'edit supplier' supplier.id %}">Edit</a>
+                    </td>
+                    <td>
+                        <a style="color: #dc3545" href="{% url 'delete supplier' supplier.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

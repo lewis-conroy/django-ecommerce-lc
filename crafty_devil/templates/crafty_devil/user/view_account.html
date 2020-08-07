@@ -1,0 +1,27 @@
+{% extends 'crafty_devil/base.html' %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'crafty_devil/css/user/view_account.css' %}"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <div id="wrapper">
+        <div class="sidebar">
+            <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:20%">  <!-- style tag used to avoid editing css -->
+                <br>
+                <br>
+                <h1 class="w3-bar-item">Your Account</h1>
+                <br>
+                <a {% if current_tab == 'info' %}id="active-tab"{% endif %} class="w3-bar-item" href="{% url 'view account' 'info' %}">Account Info</a>
+                <a {% if current_tab == 'orders' %}id="active-tab"{% endif %} class="w3-bar-item" href="{% url 'view account' 'orders' %}">View Your Orders</a>
+                <a {% if current_tab == 'invoices' %}id="active-tab"{% endif %} class="w3-bar-item" href="{% url 'view account' 'invoices' %}">View Your Invoices</a>
+            </div>
+        </div>
+        {% if current_tab == 'info' %}
+            {% include 'crafty_devil/user/view_account_details_form.html' %}
+        {% elif current_tab == 'orders' %}
+            {% include 'crafty_devil/user/view_account_view_orders.html' %}
+        {% elif current_tab == 'invoices' %}
+            {% include 'crafty_devil/user/view_account_view_invoices.html' %}
+        {% endif %}
+    </div>
+{% endblock %}

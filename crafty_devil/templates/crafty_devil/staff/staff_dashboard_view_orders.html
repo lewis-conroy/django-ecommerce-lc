@@ -1,0 +1,38 @@
+{% block content %}
+    <div id="form-area">
+        <h2>Orders</h2>
+        <table>
+            <tr>
+                <th>Order ID</th><th>Customer Name</th><th>Order Date</th><th>Order Total</th><th>Order Status</th>
+                <th></th><th></th>
+            </tr>
+            {% for order in orders %}
+                <tr>
+                    <td>
+                        {{ order.id }}
+                    </td>
+                    <td>
+                        {{ order.customer.firstname }} {{ order.customer.lastname }}
+                    </td>
+                    <td>
+                        {{ order.date }}
+                    </td>
+                    <td>
+                        {{ order.total }}
+                    </td>
+                    <td>
+                        {{ order.status }}
+                    </td>
+                    <td>
+                        <a href="{% url 'view order' order.id %}">View</a>
+                    </td>
+                    <td>
+                        {% if order.status != 'in basket' %}
+                            <a style="color: #dc3545" href="{% url 'delete order' order.id %}">Delete</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

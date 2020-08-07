@@ -1,0 +1,32 @@
+{% extends "crafty_devil/base.html" %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'crafty_devil/css/user/login.css' %}"/>
+    <link rel="stylesheet" href="{% static 'crafty_devil/css/http_www.w3schools.com_w3css_4_w3.css' %}">
+
+    <div class="form-div">
+        <form action="" method="post">
+            {% csrf_token %}
+            {% if label == 'Login Failed' %}
+                <label id="error-label">Login Failed</label>
+            {% elif label == 'signup-success' %}
+                <label id="success-label">Sign Up Successful</label>
+            {% else %}
+                <label>{{ label }}</label>
+            {% endif %}
+            <br>
+            {% for field in form %}
+                {{ field.label }}
+                <br>
+                {{ field }}
+                <br>
+            {% endfor %}
+            <button type="submit" class="btn btn btn-danger">Login</button>
+            <br>
+            {% if label != 'Staff Login' %}
+                <a href="#">Forgot Password?</a> or <a href="{% url 'signup' %}">Sign Up</a>
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}

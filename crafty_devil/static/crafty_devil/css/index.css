@@ -1,0 +1,59 @@
+.header p {
+    font-size: 48px;
+    padding-top: 100px;
+    text-align: center;
+}
+
+{% load static %}
+.header {
+    background: url('../images/page_images/crafts-background.jpg') no-repeat;
+    background-size: 100%, 100%;
+    padding: 120px;
+}
+
+.heading p {
+    font-size: 30px;
+    text-align: center;
+}
+
+.landing-buttons {
+    padding-top: 20px;
+    padding-bottom: 100px;
+    text-align: center;
+}
+
+.landing-buttons p {
+    font-size: 40px;
+}
+
+.carousel {
+    margin: auto;
+    width: 50%;
+    padding: 0 20px 20px;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon,
+.carousel-indicators {
+  filter: invert(1);
+}
+
+.carousel-inner h5, .carousel-inner p {
+    color: black;
+}
+
+.carousel-item img {
+    width: 200px;
+    height: 600px;
+}
+
+.carousel-caption h5,
+.carousel-caption p {
+    display: table; /* keep the background color wrapped tight */
+    margin: 0 auto 0 auto; /* keep the table centered */
+    padding:5px;font-size:20px;
+    background-color: white;
+
+    border: #dc3545 solid 2px;
+    border-radius: 20px;
+}

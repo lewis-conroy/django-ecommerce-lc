@@ -1,0 +1,37 @@
+{% extends "crafty_devil/base.html" %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'crafty_devil/css/contact.css' %}"/>
+    <link rel="stylesheet" href="{% static 'crafty_devil/css/http_www.w3schools.com_w3css_4_w3.css' %}">
+
+    <div id="contact" class="details">
+        <hr>
+        <h2><u>Contact Us</u></h2>
+        <p>
+            Need to contact us?<br>
+            Email us at store@craftydevilcrafts.co.uk<br>
+            Phone us on 0141 229 0544
+        </p>
+        <br>
+        <p>
+            Alternatively, pop into our store at<br>
+            Crafty Devil Craft Shop, 127 Lancefield Street, Glasgow, G3 8HZ
+        </p>
+        <hr>
+    </div>
+    <div class="details">
+        <h2><u>Opening Times</u></h2>
+        <ul>
+            <li>
+                Monday - Friday: 9am - 4pm
+            </li>
+            <li>
+                Saturday: 9am - 1pm
+            </li>
+            <li>
+                Sunday: Closed
+            </li>
+        </ul>
+    </div>
+{% endblock %}

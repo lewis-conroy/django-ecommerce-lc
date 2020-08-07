@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% if title %}
+        <title>title</title>
+    {% else %}
+        <title>Crafty Devil</title>
+    {% endif %}
+
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta charset="UTF-8">
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "crafty_devil/css/base.css" %}"/>
+    <link rel="stylesheet" href="{% static 'crafty_devil/css/http_www.w3schools.com_w3css_4_w3.css' %}">
+
+</head>
+<body>
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="/">
+            <div class="logo">
+                {% load static %}
+                <img src="{% static "crafty_devil/images/page_images/logo_cropped.png" %}" alt="Crafty Devil Logo" width="100px" height="100px"/>
+            </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href={% url 'products' %}>Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+                </li>
+            </ul>
+            {% if staff is not None %}
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ staff.firstname }} {{ staff.lastname }} (Staff)
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+                        <a class="dropdown-item" href="{% url 'staff dashboard' 'customers' %}">Staff Dashboard</a>
+                    </div>
+                </div>
+            {% elif user is not None %}
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ user.firstname }} {{ user.lastname }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'view basket' %}">Basket</a>
+                        <a class="dropdown-item" href="{% url 'view account' 'info' %}">Your Account</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+                    </div>
+                </div>
+            {% else %}
+                <div class="nav-item dropdown my-2 my-lg-0">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Login or Sign Up
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                        <a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a>
+                        <p class="dropdown-item"></p>
+                        <a class="dropdown-item" href="{% url 'staff login' 'staff' %}">Staff Login</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </nav>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script>
+        // When the user scrolls the page, execute myFunction
+        window.onscroll = function() {myFunction()};
+
+        // Get the navbar
+        const navbar = document.getElementById("navbar");
+
+        // Get the offset position of the navbar
+        const sticky = navbar.offsetTop;
+
+        // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+          if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+          } else {
+            navbar.classList.remove("sticky");
+          }
+        }
+    </script>
+
+    <hr>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

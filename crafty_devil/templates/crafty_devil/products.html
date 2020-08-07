@@ -1,0 +1,35 @@
+{% extends 'crafty_devil/base.html' %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'crafty_devil/css/products.css' %}"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <div class="wrapper">  <!-- needed for z-index position to go underneath logo -->
+        <div class="sidebar">
+            <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:20%">  <!-- style tag used to avoid editing css -->
+                <br>
+                <h3 class="w3-bar-item">Search Products</h3>
+                <div id="searchbar">
+                    <input id="search-term" type="text">
+                    <button type="button" class="btn btn-danger btn-sm">Search</button>
+                </div>
+                <h3 class="w3-bar-item">Filter by Price</h3>
+            </div>
+        </div>
+        <div class="products">
+            {% for product in products %}
+                <div class="card">
+                    <a href='/product/{{ product.id }}'>
+                        <img src="{% static 'crafty_devil/images/product_images/'|add:product.image_path %}" alt="product image">
+                    </a>
+                    <div class="container">
+                        <h4>{{ product.desc }}</h4>
+                        <p>£{{ product.price|floatformat:2 }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <br>
+{% endblock %}

@@ -1,5 +1,5 @@
 # Django 'Crafty Devil' e-commerce web application.
-This is a django web app which I created while learning how to use the Django web app framework.
+This is a django web app which I created while learning how to use the Django web app framework in college.
 
 Utilises Django, Bootstrap as well as some auxilliary libraries like ssl, smtplib, and paypal.
 

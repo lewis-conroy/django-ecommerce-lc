@@ -1,0 +1,49 @@
+{% extends 'crafty_devil/base.html' %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'crafty_devil/css/user/login.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'crafty_devil/css/staff/edit.css' %}"/>
+    <link rel="stylesheet" href="{% static 'crafty_devil/css/http_www.w3schools.com_w3css_4_w3.css' %}">
+
+    <div class="form-div">
+        <h2>Add Customer</h2>
+        <form action="" method="post">
+            {% if label == 'email-used' %}
+                <label id="error-label">This email is already being used.</label>
+            {% elif label == 'name-failed' %}
+                <label id="error-label">Invalid Name</label>
+            {% elif label == 'password-failed' %}
+                <label id="error-label">Password too short</label>
+            {% elif label == 'address-failed' %}
+                <label id="error-label">Invalid Address</label>
+            {% elif label == 'telephone-failed' %}
+                <label id="error-label">Invalid Telephone Number</label>
+            {% elif label == 'postcode-failed' %}
+                <label id="error-label">Invalid Post Code</label>
+            {% elif label == 'city-failed' %}
+                <label id="error-label">Invalid City</label>
+            {% elif label == 'email-failed' %}
+                <label id="error-label">Invalid Email</label>
+            {% elif label == 'email-used' %}
+                <label id="error-label">This email is already being used.</label>
+            {% elif label == 'failed' %}
+                <p id="error-label">
+                    Signup failed.<br>
+                    Ensure that you have entered valid details in all fields.
+                </p>
+            {% endif %}
+            <br>
+            {% csrf_token %}
+            {% for field in form %}
+                {{ field.label }}
+                <br>
+                {{ field }}
+                <br>
+            {% endfor %}
+            <br>
+            <button type="submit" class="btn btn btn-danger">Save</button>
+        </form>
+    </div>
+    <a href="{% url 'staff dashboard' 'customers' %}"><<< Go Back</a>
+{% endblock %}

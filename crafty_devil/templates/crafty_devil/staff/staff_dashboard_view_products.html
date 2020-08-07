@@ -1,0 +1,37 @@
+{% block content %}
+    <div id="form-area">
+        <h2>Products</h2>
+        <button type="button" class="btn btn-danger btn-sm" onclick="location.href='{% url 'add product' %}';">Add Product</button>
+        <table>
+            <tr>
+                <th>Product ID</th><th>Product Description</th><th>Unit Price</th><th>Supplier</th><th>Stock Level</th>
+                <th></th><th></th>
+            </tr>
+            {% for product in products %}
+                <tr>
+                    <td>
+                        {{ product.id }}
+                    </td>
+                    <td>
+                        {{ product.desc }}
+                    </td>
+                    <td>
+                        {{ product.price }}
+                    </td>
+                    <td>
+                        {{ product.supplier.name }}
+                    </td>
+                    <td>
+                        {{ product.stock_level }}
+                    </td>
+                    <td>
+                        <a href="{% url 'edit product' product.id %}">Edit</a>
+                    </td>
+                    <td>
+                        <a style="color: #dc3545" href="{% url 'delete product' product.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

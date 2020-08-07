@@ -1,0 +1,41 @@
+{% block content %}
+    <div id="form-area">
+        <h2>Customers</h2>
+        <button type="button" class="btn btn-danger btn-sm" onclick="location.href='{% url 'add customer' %}';">Add Customer</button>
+        <table>
+            <tr>
+                <th>Customer ID</th><th>Customer Name</th><th>Email</th><th>Address</th><th>Post Code</th><th>City</th><th>Telephone</th>
+                <th></th>
+            </tr>
+            {% for customer in customers %}
+                <tr>
+                    <td>
+                        {{ customer.id }}
+                    </td>
+                    <td>
+                        {{ customer.firstname }} {{ customer.lastname }}
+                    </td>
+                    <td>
+                        {{ customer.email }}
+                    </td>
+                    <td>
+                        {{ customer.address_line1 }} {{ customer.address_line2 }}
+                    </td>
+                    <td>
+                        {{ customer.post_code }}
+                    </td>
+                    <td>
+                        {{ customer.city }}
+                    </td>
+                    <td> {{ customer.telephone }}</td>
+                    <td>
+                        <a href="{% url 'edit customer' customer.id %}">Edit</a>
+                    </td>
+                    <td>
+                        <a style="color: #dc3545" href="{% url 'delete customer' customer.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

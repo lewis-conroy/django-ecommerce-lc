@@ -1,0 +1,37 @@
+{% extends 'crafty_devil/base.html' %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'crafty_devil/css/product.css' %}"/>
+    <link rel="stylesheet" href="{% static 'crafty_devil/css/http_www.w3schools.com_w3css_4_w3.css' %}">
+
+    <div class="wrapper">
+        <div>
+            <img src="{% static 'crafty_devil/images/product_images/'|add:product.image_path %}" alt="product image">
+        </div>
+        <div class="details">
+            <div>
+                <ul>
+                    <li><h1>{{ product.desc }}</h1></li>
+                    <li><h2>Price: £{{ product.price|floatformat:2 }}</h2></li>
+                </ul>
+            </div>
+            <div id="bottom-part">
+                <ul>
+                    <form action="" method="post">
+                    {% csrf_token %}
+                        <li><h5>Quantity available: {{ product.stock_level }}</h5></li>
+                        <label style="color: #dc3545">{{ error_label }}</label>
+                        <br>
+                        {% for field in form %}
+                            {{ field.label }}{{ field }}<br>
+                        {% endfor %}
+                    <li><br></li>
+                        <li><button type="submit" class="btn btn-danger btn-lg">Add to Basket</button></li>
+                    </form>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'crafty_devil/base.html' %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'crafty_devil/css/user/login.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'crafty_devil/css/staff/edit.css' %}"/>
+    <link rel="stylesheet" href="{% static 'crafty_devil/css/http_www.w3schools.com_w3css_4_w3.css' %}">
+
+    <div class="form-div">
+        <h2>Add Product</h2>
+        <form action="" method="post">
+            {% if label == 'bad-id' %}
+                <label style="color: #dc3545">Invalid Supplier ID</label>
+            {% endif %}
+            <br>
+            {% csrf_token %}
+            {% for field in form %}
+                {{ field.label }}
+                <br>
+                {{ field }}
+                <br>
+            {% endfor %}
+            <br>
+            <button type="submit" class="btn btn btn-danger">Save</button>
+        </form>
+    </div>
+    <a href="{% url 'staff dashboard' 'products' %}"><<< Go Back</a>
+{% endblock %}

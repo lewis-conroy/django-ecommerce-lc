@@ -1,0 +1,36 @@
+{% extends 'crafty_devil/base.html' %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'crafty_devil/css/user/login.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'crafty_devil/css/staff/edit.css' %}"/>
+    <link rel="stylesheet" href="{% static 'crafty_devil/css/http_www.w3schools.com_w3css_4_w3.css' %}">
+
+    <div class="form-div">
+        <h2>Add Supplier</h2>
+        <form action="" method="post">
+            {% if label == 'name-failed' %}
+                <label style="color: #dc3545">Invalid Name</label>
+            {% elif label == 'address1-failed' %}
+                <label style="color: #dc3545">Invalid Address</label>
+            {% elif label == 'post-code-failed' %}
+                <label style="color: #dc3545">Invalid Post Code</label>
+            {% elif label == 'city-failed' %}
+                <label style="color: #dc3545">Invalid City</label>
+            {% elif label == 'telephone-failed' %}
+                <label style="color: #dc3545">Invalid Telephone</label>
+            {% endif %}
+            <br>
+            {% csrf_token %}
+            {% for field in form %}
+                {{ field.label }}
+                <br>
+                {{ field }}
+                <br>
+            {% endfor %}
+            <br>
+            <button type="submit" class="btn btn btn-danger">Save</button>
+        </form>
+    </div>
+    <a href="{% url 'staff dashboard' 'suppliers' %}"><<< Go Back</a>
+{% endblock %}

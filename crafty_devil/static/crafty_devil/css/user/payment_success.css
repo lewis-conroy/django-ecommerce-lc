@@ -1,0 +1,17 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+#order-form,
+#thank-you,
+#payment-form {
+  margin-left: 25px;
+  margin-right: 25px;
+}

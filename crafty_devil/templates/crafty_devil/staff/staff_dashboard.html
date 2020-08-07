@@ -1,0 +1,33 @@
+{% extends 'crafty_devil/base.html' %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'crafty_devil/css/staff/staff_dashboard.css' %}"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <div id="wrapper">
+        <div class="sidebar">
+            <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:20%">  <!-- style tag used to avoid editing css -->
+                <br>
+                <br>
+                <h1 class="w3-bar-item">Staff Dashboard</h1>
+                <br>
+                <a {% if page == 'customers' %}id="active-tab"{% endif %} class="w3-bar-item" href="{% url 'staff dashboard' 'customers' %}">View All Customers</a>
+                <a {% if page == 'orders' %}id="active-tab"{% endif %} class="w3-bar-item" href="{% url 'staff dashboard' 'orders' %}">View All Orders</a>
+                <a {% if page == 'products' %}id="active-tab"{% endif %} class="w3-bar-item" href="{% url 'staff dashboard' 'products' %}">View All Products</a>
+                <a {% if page == 'suppliers' %}id="active-tab"{% endif %} class="w3-bar-item" href="{% url 'staff dashboard' 'suppliers' %}">View All Suppliers</a>
+                <a {% if page == 'low stock' %}id="active-tab"{% endif %} class="w3-bar-item" href="{% url 'staff dashboard' 'low stock' %}">View Low Stock</a>
+            </div>
+        </div>
+        {% if page == 'customers' %}
+            {% include 'crafty_devil/staff/staff_dashboard_view_customers.html' %}
+        {% elif page == 'orders' %}
+            {% include 'crafty_devil/staff/staff_dashboard_view_orders.html' %}
+        {% elif page == 'products' %}
+            {% include 'crafty_devil/staff/staff_dashboard_view_products.html' %}
+        {% elif page == 'suppliers' %}
+            {% include 'crafty_devil/staff/staff_dashboard_view_suppliers.html' %}
+        {% elif page == 'low stock' %}
+            {% include 'crafty_devil/staff/staff_dashboard_view_low_stock.html' %}
+        {% endif %}
+    </div>
+{% endblock %}

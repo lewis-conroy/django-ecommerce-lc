@@ -1,0 +1,55 @@
+{% extends 'crafty_devil/base.html' %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'crafty_devil/css/user/payment_success.css' %}">
+    <div id="thank-you">
+        <h1>Thank You!</h1>
+        <br>
+        <h2>Your Crafty Devil Order</h2>
+    </div>
+    <div id="order-form">
+        <p>Order Number: {{ order.id }}<br> Order Date: {{ order.date }}</p>
+        <br>
+        <h2>Order Contents</h2>
+        <table>
+            <tr>
+                <th>Item ID</th><th>Item Desc.</th><th>Item Price</th><th>Quantity</th><th>Line Total</th>
+            </tr>
+            {% for orderline in orderlines %}
+                <tr>
+                    <td>{{ orderline.product.id }}</td>
+                    <td>{{ orderline.product.desc }}</td>
+                    <td>{{ orderline.product.price }}</td>
+                    <td>{{ orderline.quantity }}</td>
+                    <td>£{{ orderline.line_total|floatformat:2 }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <hr>
+    <div id="payment-form">
+        <h2>Payment Details</h2>
+        {% if order.payment.paypal %}
+            <b>Order paid via PayPal</b>
+        {% else %}
+            <b>Order paid by {{ order.payment.cardholder_name }}</b>
+            <br>
+            <b>Account no. {{ order.payment.card_number }}</b>
+        {% endif %}
+        <br>
+        <b>Order Total: £{{ order.total|floatformat:2 }}</b>
+        <br>
+        <br>
+        <p style="color: #dc3545">
+        {% if order.status == 'cancelled' %}
+            This order has been cancelled.
+        {% else %}
+            You can cancel an order up to 24 hours after it has been placed.<br>
+            <a style='color: #dc3545' href="{% url 'cancel order' order.id %}">Cancel Order</a>
+        {% endif %}
+        </p>
+        <br>
+        <a href="{% url 'view account' 'orders' %}"><<< Go Back</a>
+    </div>
+{% endblock %}

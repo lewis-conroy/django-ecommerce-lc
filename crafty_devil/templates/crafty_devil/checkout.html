@@ -1,0 +1,35 @@
+{% extends 'crafty_devil/base.html' %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'crafty_devil/css/checkout.css' %}"/>
+
+    <div id="card-form">
+        <form action="" method="post">
+        <h2>Pay Using Your Credit or Debit Card</h2>
+        {% csrf_token %}
+            <label style="color: #dc3545">
+                {% if label == 'transaction failed' %}
+                    Transaction failed. Check your details.
+                {% endif %}
+            </label>
+            <br>
+            {% for field in card_form %}
+                {{ field.label }}
+                <br>
+                {{ field }}
+                <br>
+            {% endfor %}
+            <br>
+            <button type="submit" class="btn btn-danger btn-lg">Pay</button>
+        </form>
+    </div>
+    <div id="paypal-form">
+        <h2>Pay Securely through PayPal</h2>
+        {{ paypal_form.render }}
+    </div>
+    <br>
+    <div id="goback">
+        <a href="{% url 'view basket' %}"><<< Go Back</a>
+    </div>
+{% endblock %}

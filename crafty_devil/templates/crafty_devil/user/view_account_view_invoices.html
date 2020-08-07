@@ -1,0 +1,40 @@
+{% block invoices %}
+    <div id="form-area">
+        {% if invoices|length <= 0 %}
+            <h2>You don't have any invoices.</h2>
+            {% else %}
+                <table>
+                <tr>
+                    <th>Payment ID</th><th>Order ID</th><th>Order Total</th><th>Card Number</th><th>Payment Date</th><th></th>
+                </tr>
+                {% for order in invoices %}
+                    <tr>
+                        <td>
+                            {{ order.payment.id }}
+                        </td>
+                        <td>
+                            {{ order.id }}
+                        </td>
+                        <td>
+                            {{ order.date }}
+                        </td>
+                        <td>
+                            {% if order.payment.paypal %}
+                                paid with PayPal
+                            {% else %}
+                                ********{{ order.payment.card_number|slice:":4" }}
+                            {% endif %}
+
+                        </td>
+                        <td>
+                            {{ order.date }}
+                        </td>
+                        <td>
+                            <a href="{% url 'view order' order.id %}">View Order</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+{% endblock %}

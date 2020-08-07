@@ -1,0 +1,36 @@
+{% block orders %}
+    <div id="form-area">
+        {% if orders|length > 0 %}
+            <table>
+                <th>Order ID</th><th>Date</th><th>Cost</th><th>Status</th><th></th>
+                {% for order in orders %}
+                    <tr>
+                        <td>
+                            {{ order.id }}
+                        </td>
+                        <td>
+                            {{ order.date }}
+                        </td>
+                        <td>
+                            {{ order.total|floatformat:2 }}
+                        </td>
+                        <td>
+                            {{ order.status }}
+                        </td>
+                        {% if order.status == 'in basket' %}
+                            <td>
+                                <a href="{% url 'view basket' %}">View Basket >>></a>
+                            </td>
+                        {% else %}
+                            <td>
+                                <a href="{% url 'view order' order.id %}">View Order >>></a>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <h2>You don't have any orders.</h2>
+        {% endif %}
+    </div>
+{% endblock %}

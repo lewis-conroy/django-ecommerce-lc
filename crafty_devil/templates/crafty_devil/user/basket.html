@@ -1,0 +1,63 @@
+{% extends 'crafty_devil/base.html' %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'crafty_devil/css/user/basket.css' %}">
+
+    <div class="wrapper">
+        <!-- Gets value in quantity input to send to views.py method -->
+        <script>
+            function f(id, element_name) {
+                let quantity = document.getElementById(element_name).value;
+                let url = "{% url 'update basket ol quantity' 'x' 'z' %}";
+                let int_quantity = parseInt(quantity);
+                if (isNaN(int_quantity))
+                {
+                    alert('Please enter a number greater than 0');
+                }
+                else
+                {
+                    url = url.replace('x', id);
+                    url = url.replace('z', int_quantity.toString());
+                    window.location.href = url;
+                }
+            }
+        </script>
+        <h1>Your Basket</h1>
+        <div>
+            {% if orderlines|length > 0 %}
+                <form action="" method="post">
+                {% csrf_token %}
+                    <table>
+                        <tr>
+                            <th>Item ID</th><th>Item Desc.</th><th>Item Price</th><th>Quantity</th><th>Line Total</th>
+                        </tr>
+                        {% for orderline in orderlines %}
+                            <tr>
+                                <td>{{ orderline.product.id }}</td>
+                                <td>{{ orderline.product.desc }}</td>
+                                <td>{{ orderline.product.price }}</td>
+                                <td id="td_quantity">
+                                    {% if orderline.id is quantity_error_ol_id %}
+                                        <label style="color: #dc3545" for="quantity_{{ orderline.id }}">{{ quantity_label }}</label>
+                                    {% endif %}
+                                    <input id="quantity_{{ orderline.id }}" type="number" name="{{ orderline.id }}" min="1" required="" value="{{ orderline.quantity }}">
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="f({{ orderline.id }}, 'quantity_{{ orderline.id }}')">Change</button>
+                                </td>
+                                <td>£{{ orderline.line_total|floatformat:2 }}</td>
+                                <td>
+                                    <a style="color: #dc3545" href="{% url 'delete basket line' orderline.id %}">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    <h2>Total: £{{ open_order.total|floatformat:2 }}</h2>
+                    <button type="submit" class="btn btn-danger btn-lg" onclick="{% url 'checkout' %}">Proceed to Checkout</button>
+                </form>
+
+            {% else %}
+                <h2>Your basket is empty...<br><a href="{% url 'products' %}">view products</a></h2>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
